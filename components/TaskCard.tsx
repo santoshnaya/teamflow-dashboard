@@ -29,13 +29,26 @@ export default function TaskCard({ task }: TaskCardProps) {
     }
   }
 
+  const getGradient = (color: string) => {
+    switch (color) {
+      case 'from-pink-500 to-rose-500':
+        return 'linear-gradient(135deg, #EC4899, #F43F5E)'
+      case 'from-purple-500 to-indigo-500':
+        return 'linear-gradient(135deg, #A855F7, #6366F1)'
+      default:
+        return 'linear-gradient(135deg, #7C3AED, #9333EA)'
+    }
+  }
+
   return (
     <div
       className={cn(
-        "relative p-6 rounded-2xl text-white transition-all duration-300 cursor-pointer overflow-hidden group",
-        `bg-gradient-to-br ${task.color}`,
+        "relative p-6 rounded-2xl text-white transition-all duration-300 cursor-pointer overflow-hidden group min-h-[200px]",
         isHovered && "scale-105 shadow-2xl"
       )}
+      style={{
+        background: getGradient(task.color)
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
